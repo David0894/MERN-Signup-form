@@ -8,12 +8,12 @@ class App extends React.Component{
         super()
         this.state={
             imageUrl:"",
-            firstName:"",
+            // firstName:"",
             userName:"",
             emailId:"",
             password:""
         }
-        this.changeFirstName =this.changeFirstName.bind(this)
+        // this.changeFirstName =this.changeFirstName.bind(this)
         this.changeUserName =this.changeUserName.bind(this)
         this.changeEmail =this.changeEmail.bind(this)
         this.changePassword =this.changePassword.bind(this)
@@ -21,11 +21,11 @@ class App extends React.Component{
         this.changeImageUrl = this.changeImageUrl.bind(this)
     }
 
-    changeFirstName(event){
-        this.setState({
-            firstName:event.target.value
-        })
-    }
+    // changeFirstName(event){
+    //     this.setState({
+    //         firstName:event.target.value
+    //     })
+    // }
 
     changeUserName(event){
         this.setState({
@@ -58,7 +58,7 @@ class App extends React.Component{
 
         const register ={
             imageUrl: this.state.imageUrl,
-            firstName: this.state.firstName,
+            // firstName: this.state.firstName,
             userName: this.state.userName,
             emailId: this.state.emailId,
             password: this.state.password
@@ -68,7 +68,7 @@ class App extends React.Component{
 
         this.setState({
             image:"",
-            firstName:"",
+            // firstName:"",
             userName:"",
             emailId:"",
             password:""
@@ -86,11 +86,11 @@ class App extends React.Component{
                             onChange={this.changeImageUrl}
                             className="form-control form-group"></input>
 
-                            <input type="text" 
+                            {/* <input type="text" 
                             placeholder="Full Name"
                             onChange={this.changeFirstName}
                             value={this.state.firstName} 
-                            className="form-control form-group"></input>
+                            className="form-control form-group"></input> */}
 
                             <input type="text"
                              placeholder="User Name"

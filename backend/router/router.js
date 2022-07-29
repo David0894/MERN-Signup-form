@@ -10,7 +10,7 @@ router.post('/signup',async (req,res)=>{
     
     const signedUser = new signUpTemplateInstance({
         imageUrl: req.body.imageUrl,
-        firstName: req.body.firstName,
+        // firstName: req.body.firstName,
         userName:req.body.userName,
         emailId: req.body.emailId,
         password: securePassword

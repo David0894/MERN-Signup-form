@@ -6,10 +6,10 @@ const signUpTemplate = new mongoose.Schema({
        type:String,
        required:true
     },
-    firstName:{
-        type:String,
-        required: true
-    },
+    // firstName:{
+    //     type:String,
+    //     required: true
+    // },
     userName:{
         type:String,
         required:true
@@ -25,7 +25,9 @@ const signUpTemplate = new mongoose.Schema({
     date:{
         type: Date,
         default: Date.now
-    }
-})
+    },
+    
+}
+)
 
 module.exports =  mongoose.model('myTable', signUpTemplate)
