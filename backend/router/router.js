@@ -1,4 +1,6 @@
 const express = require('express')
+const jwt = require("jsonwebtoken");
+const secret = 'se@3121F$#^&';
 
 const router = express.Router()
 const signUpTemplateInstance = require('../modals/signUpModals')
@@ -32,6 +34,7 @@ router.post('/signup',async (req,res)=>{
 })
 
 router.post('/login', async (req,res)=>{
+    console.log('success login ')
     const {emailId, password} = req.body
     //const user = signUpTemplateInstance.findOne(emailId: req.body.emailId)
     if(!emailId || !password )
@@ -57,12 +60,13 @@ router.post('/login', async (req,res)=>{
             console.log(err)
         })
     })
-
 })
 // cleaning the cookies from the user session
 router.post('/logout', (req,res)=>{
+    console.log("logout success")
     req.session.destroy();
     return res.send("User Logged out")
+   
 })
 
 
@@ -72,7 +76,36 @@ router.get('/isAuthorised', (req, res) => {
           } else {
             return res.status(401).json('unauthorize')
           }
-    
   })
   
+
+
+
+  router.post('/login_jwt', async (req,res)=>{
+    const {emailId, password} = req.body
+    if(!emailId && !password ){
+        return res.status(400).json({error:"Please add all fields"})
+    }
+
+    signUpTemplateInstance.findOne({emailId:emailId})
+    .then((savedUser)=>{
+        if(!savedUser){
+            return res.status(422).json({error:"Invalid Email or password"})
+        }
+        bcrypt.compare(password,savedUser.password)
+        .then((match)=>{
+            if(match){
+                const Tok = jwt.sign({user:savedUser.emailId}, secret, { expiresIn: '1h' });
+                return res.status(200).json({token:Tok,msg:"loging successfully.!"});
+            }else{
+                return res.status(422).json({error:"Invalid password"})
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    })
+})
+
+
 module.exports = router
